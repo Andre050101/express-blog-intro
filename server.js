@@ -20,6 +20,13 @@ app.get('/bacheca', (req, res) => {
     });
 });
 
+//Gestione rotte inesistenti
+app.use((req, res, next) => {
+    res.status(404).json({
+        message: 'Risorsa non trovata'
+    });
+});
+
 
 //Avvia server
 app.listen(port, () => {
