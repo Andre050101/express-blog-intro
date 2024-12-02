@@ -13,7 +13,12 @@ app.get('/', (req, res) => {
 });
 
 //Rotta bacheca
-app.get('/bacheca', (req, res) => {
+app.get('/bacheca', (req, res, next) => {
+    if (!posts || posts.length === 0) {
+        return res.status(404).json({
+            message: 'Nessun post disponibile'
+        });
+    }
     res.json({
         posts: posts,
         conteggio: posts.length
